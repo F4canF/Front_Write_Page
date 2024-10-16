@@ -18,20 +18,20 @@ const Stack = createStackNavigator();
 
 // 이미지 목록 (RandImage 폴더에서 이미지를 가져옴)
 const images = [
-  require('./RandImage/image1.jpg'),
-  require('./RandImage/image2.png'),
-  require('./RandImage/image3.png'),
-  require('./RandImage/image4.jpg'),
-  require('./RandImage/image5.jpg'),
-  require('./RandImage/image6.png'),
-  require('./RandImage/image7.png'),
-  require('./RandImage/image8.png'),
-  require('./RandImage/image9.png'),
-  require('./RandImage/image10.jpg'),
+  require('./WritingImg/Apple/apple10.jpg'),
+  require('./WritingImg/Cat/cat11.jpg'),
+  require('./WritingImg/Hanbok/hanbok15.jpg'),
+  require('./WritingImg/Dog/dog12.jpg'),
+  require('./WritingImg/Light/light9.jpg'),
+  require('./WritingImg/Mir/mir11.jpg'),
+  require('./WritingImg/Gaon/gaon9.jpg'),
+  require('./WritingImg/Gyeolsim/gyeolsim17.jpg'),
+  require('./WritingImg/Glasses/glasses11.jpg'),
+  require('./WritingImg/Balloon/balloon13.jpg'),
 ];
 
 // 단어 목록
-const words = ["apple", "banana", "cherry", "date", "fig", "grape", "kiwi", "lemon", "mango", "orange"];
+const words = ["사과", "고양이", "한복", "강아지", "빛", "미르", "가온", "결심", "안경", "풍선"];
 
 const App = () => {
   const [paths, setPaths] = useState([]); // 그린 경로들

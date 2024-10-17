@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './screens/Home.js';
 import Correct from './screens/Correct';
-import Text from './screens/TextLearn';
+import TextLeanr from './screens/TextLearn';
 
 import {
   View,

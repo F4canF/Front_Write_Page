@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Exit from './screens/home.js';
+import Exit from './screens/Home.js';
 import {
   View,
   Text,
@@ -62,9 +62,10 @@ const App = () => {
         setCurrentPath(newPath);
       },
       onPanResponderRelease: () => {
+        // 현재 경로를 paths에 추가
         setPaths([...paths, { path: currentPath, strokeColor, strokeWidth }]);
-        setCurrentPath('');
-        setRedoPaths([]);
+        setCurrentPath(''); // 경로 초기화
+        setRedoPaths([]); // redo 경로 초기화
       },
     })
   ).current;
@@ -93,18 +94,18 @@ const App = () => {
   const undo = () => {
     if (paths.length > 0) {
       const newPaths = [...paths];
-      const lastPath = newPaths.pop();
-      setRedoPaths([lastPath, ...redoPaths]);
-      setPaths(newPaths);
+      const lastPath = newPaths.pop(); // 마지막 경로 제거
+      setRedoPaths([lastPath, ...redoPaths]); // redo 목록에 추가
+      setPaths(newPaths); // 경로 업데이트
     }
   };
 
   const redo = () => {
     if (redoPaths.length > 0) {
       const newRedoPaths = [...redoPaths];
-      const pathToRestore = newRedoPaths.shift();
-      setPaths([...paths, pathToRestore]);
-      setRedoPaths(newRedoPaths);
+      const pathToRestore = newRedoPaths.shift(); // 첫 번째 redo 경로 가져오기
+      setPaths([...paths, pathToRestore]); // 경로 업데이트
+      setRedoPaths(newRedoPaths); // redo 목록 업데이트
     }
   };
 

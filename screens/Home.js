@@ -1,7 +1,10 @@
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import App from 'C:\Users\User\scanF\App.js'
+import Home from './screens/Home'; // 정확한 파일 경로를 사용하세요.
+import Correct from './screens/Correct';
+import TextLearn from './screens/TextLearn';
+
 import {
   View,
   Text,
@@ -14,63 +17,75 @@ import {
 const { width, height } = Dimensions.get("window"); // 화면의 너비와 높이를 얻음
 const Stack = createStackNavigator();
 
-const App = () => {
+const IconPanel = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      {/* 오른쪽 패널 */}
-      <View style={styles.rightPanel}>
+    <View style={styles.rightPanel}>
+      <View style={styles.iconButton}>
+        <Image
+          source={require("./image/icon1.png")}
+          style={styles.iconImage}
+        />
+      </View>
+      <View style={styles.iconButton}>
+        <Image
+          source={require("./image/icon2.png")}
+          style={styles.iconImage}
+        />
+      </View>
+      <View style={styles.iconButton}>
+        <Image
+          source={require("./image/icon3.png")}
+          style={styles.iconImage}
+        />
+      </View>
+      <View style={styles.iconButton}>
+        <Image
+          source={require("./image/icon4.png")}
+          style={styles.iconImage}
+        />
+      </View>
+      <View style={styles.iconButton}>
+        <Image
+          source={require("./image/icon5.png")}
+          style={styles.iconImage}
+        />
+      </View>
+      <TouchableOpacity onPress={() => navigation.navigate('App')}>
         <View style={styles.iconButton}>
           <Image
-            source={require("./image/icon1.png")} // 이미지 파일 경로
+            source={require("./image/icon6.png")}
             style={styles.iconImage}
           />
         </View>
-        <View style={styles.iconButton}>
+      </TouchableOpacity>
+      <View style={styles.undoRedoContainer}>
+        <View style={styles.undoRedoButton}>
           <Image
-            source={require("./image/icon2.png")} // 이미지 파일 경로
-            style={styles.iconImage}
+            source={require("./image/undo.png")}
+            style={styles.undoRedoImage}
           />
         </View>
-        <View style={styles.iconButton}>
+        <View style={styles.undoRedoButton}>
           <Image
-            source={require("./image/icon3.png")} // 이미지 파일 경로
-            style={styles.iconImage}
+            source={require("./image/redo.png")}
+            style={styles.undoRedoImage}
           />
-        </View>
-        <View style={styles.iconButton}>
-          <Image
-            source={require("./image/icon4.png")} // 이미지 파일 경로
-            style={styles.iconImage}
-          />
-        </View>
-        <View style={styles.iconButton}>
-          <Image
-            source={require("./image/icon5.png")} // 이미지 파일 경로
-            style={styles.iconImage}
-          />
-        </View>
-        <View style={styles.iconButton} onPresds={() => NavigationContainer.navigae('App')}>
-          <Image
-            source={require("./image/icon6.png")} // 이미지 파일 경로
-            style={styles.iconImage}
-          />
-        </View>
-        <View style={styles.undoRedoContainer}>
-          <View style={styles.undoRedoButton}>
-            <Image
-              source={require("./image/undo.png")} // 되돌리기 이미지
-              style={styles.undoRedoImage}
-            />
-          </View>
-          <View style={styles.undoRedoButton}>
-            <Image
-              source={require("./image/redo.png")} // 다시하기 이미지
-              style={styles.undoRedoImage}
-            />
-          </View>
         </View>
       </View>
     </View>
+  );
+};
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Correct" component={Correct} />
+        <Stack.Screen name="TextLearn" component={TextLearn} />
+      </Stack.Navigator>
+      <IconPanel />
+    </NavigationContainer>
   );
 };
 
@@ -83,21 +98,21 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   rightPanel: {
-    position: "absolute", // 위치를 절대값으로 설정
-    right: 10, // 오른쪽에 배치
-    top: height * 0.1, // 위쪽 간격을 줌
-    width: width * 0.1, // 오른쪽 패널의 너비를 화면 너비에 비례하게 설정
+    position: "absolute",
+    right: 10,
+    top: height * 0.1,
+    width: width * 0.1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f0c541",
     padding: 10,
     borderRadius: 10,
-    height: "80%", // 패널 높이를 줄임
+    height: "80%",
   },
   iconButton: {
-    width: width * 0.04, // 아이콘 버튼 크기를 화면 너비에 비례하게 설정
+    width: width * 0.04,
     height: width * 0.04,
-    marginVertical: height * 0.005, // 화면 높이에 비례한 간격
+    marginVertical: height * 0.005,
   },
   iconImage: {
     width: "100%",
@@ -107,13 +122,13 @@ const styles = StyleSheet.create({
   undoRedoContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: height * 0.14, // 화면 높이에 비례한 간격
+    marginTop: height * 0.14,
     marginBottom: height * 0.005,
   },
   undoRedoButton: {
-    width: width * 0.04, // 되돌리기/다시하기 버튼 크기를 화면 너비에 비례하게 설정
+    width: width * 0.04,
     height: width * 0.04,
-    marginHorizontal: width * 0.005, // 화면 너비에 비례한 간격
+    marginHorizontal: width * 0.005,
   },
   undoRedoImage: {
     width: "100%",

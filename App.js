@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './screens/Home.js';
 import Correct from './screens/Correct';
-import TextLeanr from './screens/TextLearn';
+import TextLearn from './screens/TextLearn';
 
 import {
   View,
@@ -21,18 +21,40 @@ const App = () => {
   return (
     <View style={styles.container}>
       {/* 왼쪽 중앙의 버튼들 */}
-      <View style={styles.buttonContainer}> 
-        <TouchableOpacity style={styles.button} onPresds={() => NavigationContainer.navigae('IconDraw')}> {/* 단어 학습*/}
-          <Text style={styles.buttonText}>단어 학습</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPresds={() => NavigationContainer.navigae('ImageDraw')}> {/* 글자 교정*/}
-          <Text style={styles.buttonText}>글자 교정</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPresds={() => NavigationContainer.navigae('Home')}> {/* 홈 화면으로 이동*/}
-          <Text style={styles.buttonText}>취소</Text>
-        </TouchableOpacity>
-      </View>
+      <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Correct" component={Correct} />
+        <Stack.Screen name="TextLearn" component={TextLearn} />
+      </Stack.Navigator>
 
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('TextLearn')}
+          >
+            <Text style={styles.buttonText}>단어 학습</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('Correct')}
+          >
+            <Text style={styles.buttonText}>글자 교정</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('Home')}
+          >
+            <Text style={styles.buttonText}>취소</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.rightPanel}>
+          {/* ... (기존의 오른쪽 패널 아이콘 코드) ... */}
+        </View>
+      </View>
+    </NavigationContainer>
       {/* 오른쪽 패널 */}
       <View style={styles.rightPanel}>
         <View style={styles.iconButton}>

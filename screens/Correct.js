@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Exit from './screens/home.js';
+import Exit from './screens/Home.js';
 import {
   View,
   Text,
